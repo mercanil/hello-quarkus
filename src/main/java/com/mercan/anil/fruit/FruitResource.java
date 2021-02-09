@@ -1,4 +1,7 @@
-package com.mercan.anil;
+package com.mercan.anil.fruit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -8,6 +11,7 @@ import java.util.List;
 @Path("/fruit")
 public class FruitResource {
 
+    protected final Logger log = LoggerFactory.getLogger(FruitResource.class);
 
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
@@ -27,5 +31,19 @@ public class FruitResource {
         fruit.id = null;
         Fruit.persist(fruit);
         return Response.ok().build();
+    }
+
+    @Transactional
+    @DELETE
+    public Response deleteFruit(@PathParam("id") Long id){
+        boolean b = Fruit.deleteById(id);
+        return  Response.ok(b).build();
+    }
+
+    @GET()
+    @Path("/{name}")
+    public  String thisIsAHelloExample(@PathParam(("name")) String name){
+        log.info("called with :" + name);
+        return "Hello:" + name;
     }
 }
