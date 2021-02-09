@@ -35,9 +35,9 @@ public class FruitResource {
 
     @Transactional
     @DELETE
+    @Path("/{id}")
     public Response deleteFruit(@PathParam("id") Long id){
-        boolean b = Fruit.deleteById(id);
-        return  Response.ok(b).build();
+      return Response.ok(Fruit.deleteById(id)).build();
     }
 
     @GET()
