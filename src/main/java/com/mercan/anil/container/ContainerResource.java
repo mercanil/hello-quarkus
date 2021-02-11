@@ -13,7 +13,6 @@ public class ContainerResource {
     @Inject
     ContainerService containerService;
 
-
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getContainer(){
