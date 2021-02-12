@@ -38,12 +38,9 @@ public class CustomerRepository {
         return customer;
     }
 
-    public void deleteCustomer(Integer id) throws CustomerException {
+    public boolean deleteCustomer(Integer id) throws CustomerException {
         Customer byCustomerId = findByCustomerId(id);
-        boolean remove = customerList.remove(byCustomerId);
-        if (!remove){
-            throw new CustomerException("Unable to find Customer");
-        }
+        return customerList.remove(byCustomerId);
     }
 
 }

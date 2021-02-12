@@ -6,7 +6,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("customers")
+@Path("/customers")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,7 +30,11 @@ public class CustomerResource {
     }
 
     @DELETE
-    public void  delete(@QueryParam("id") Integer id ) throws CustomerException {
-        customerRepository.deleteCustomer(id);
+    @Path("/{id}")
+    public void  delete(@PathParam("id") Integer id ) throws CustomerException {
+        boolean contentFound= customerRepository.deleteCustomer(id);
+        if (!contentFound){
+            throw new CustomerException("Not Found");
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.mercan.anil;
+package com.mercan.anil.fruit;
 
 
 import com.mercan.anil.fruit.Fruit;
