@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/customers")
@@ -20,8 +21,11 @@ public class CustomerResource {
     }
 
     @POST
-    public Customer store(Customer c){
-        return customerRepository.createCustomer(c);
+    public Response store(Customer c){
+        Customer customer = customerRepository.createCustomer(c);
+        return Response.status(Response.Status.CREATED)
+                .entity(customer)
+                .build();
     }
 
     @PUT
