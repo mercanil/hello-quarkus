@@ -87,6 +87,9 @@
            $scope.form.surname = "";
            $scope.form.id = -1;
          }
+
+        var connection = new Websocket('ws://localhost:8080/websocket')
+
        });
      </script>
 </head>
@@ -99,15 +102,14 @@
     <form ng-submit="update()">
         <div class="divTableRow">
             <div class="divTableCell">Name:</div>
-            <div class="divTableCell"><input type="text"
-                                             placeholder="Name" ng-model=
-                                                     "form.name" size="60"/></div>
+            <div class="divTableCell">
+                <input type="text" placeholder="Name" ng-model="form.name" size="60"/>
+            </div>
         </div>
         <div class="divTableRow">
             <div class="divTableCell">Surname:</div>
-            <div class="divTableCell"><input type="text"
-                                             placeholder="Surname" ng-model="form.surname"
-                                             size="60"/>
+            <div class="divTableCell">
+                <input type="text" placeholder="Surname" ng-model="form.surname" size="60"/>
             </div>
         </div>
         <input type="submit" value="Save"/>
@@ -121,10 +123,10 @@
         <div class="divTableRow" ng-repeat="customer in customers">
             <div class="divTableCell">{{ customer.name }}</div>
             <div class="divTableCell">{{ customer.surname }}</div>
-            <div class="divTableCell"><a ng-click="edit( customer )"
-                                         class="myButton">Edit</a>
-                <a ng-click="remove( customer )"
-                   class="myButton">Remove</a></div>
+            <div class="divTableCell">
+                <a ng-click="edit( customer )" class="myButton">Edit</a>
+                <a ng-click="remove( customer )" class="myButton">Remove</a>
+            </div>
         </div>
     </div>
 </div>

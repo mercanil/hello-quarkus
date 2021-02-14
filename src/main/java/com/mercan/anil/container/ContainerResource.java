@@ -16,6 +16,6 @@ public class ContainerResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getContainer(){
-        return "you are running on" + containerService.getContainerId();
+        return "you are running on " + containerService.getContainerId();
     }
 }

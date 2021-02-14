@@ -22,23 +22,21 @@ public class CustomerResource {
 
     @POST
     public Response store(Customer c){
-        Customer customer = customerRepository.createCustomer(c);
+        customerRepository.createCustomer(c);
         return Response.status(Response.Status.CREATED)
-                .entity(customer)
                 .build();
     }
 
     @PUT
-    public Customer update(Customer c) throws CustomerException {
-        return customerRepository.updateCustomer(c);
+    public Response update(Customer c) throws CustomerException {
+        return Response.status(Response.Status.OK)
+                .build();
     }
 
     @DELETE
     @Path("/{id}")
-    public void  delete(@PathParam("id") Integer id ) throws CustomerException {
-        boolean contentFound= customerRepository.deleteCustomer(id);
-        if (!contentFound){
-            throw new CustomerException("Not Found");
-        }
+    public Response  delete(@PathParam("id") Long id ) throws CustomerException {
+        customerRepository.deleteCustomer(id);
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }
